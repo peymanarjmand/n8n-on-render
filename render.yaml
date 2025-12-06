@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: n8n-on-render
+    runtime: docker
+    repo: https://github.com/peymanarjmand/n8n-on-render # آدرس دقیق ریپوی خودت رو چک کن اگر فرق داره عوض کن
+    plan: starter # چون اعتبار داری روی استارتر گذاشتم که خاموش نشه
+    region: frankfurt
+    envVars:
+      - key: N8N_PORT
+        value: 5678
+      - key: N8N_PROTOCOL
+        value: https
+      - key: N8N_ENCRYPTION_KEY
+        generateValue: true # این خودش یک رمز قوی می‌سازد
+    disk:
+      name: n8n-data
+      mountPath: /home/node/.n8n
+      sizeGB: 1
